@@ -18,6 +18,14 @@ allprojects {
     }
 }
 
+ext {
+    espressoVersion = "2.2.2"
+    supportVersion = "25.3.1"
+    rxjavaVersion = "2.0.1"
+    junitVersion = "4.11"
+    glideVersion = "3.5.2"
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
