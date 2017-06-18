@@ -17,26 +17,12 @@ public final class HeroBinder {
 
     private HeroBinder() {
     }
-    private static RequestListener<String, GlideDrawable> requestListener = new RequestListener<String, GlideDrawable>() {
-        @Override
-        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-            Log.d(HeroBinder.class.getSimpleName(), e.getMessage());
-            return false;
-        }
-
-        @Override
-        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-            return false;
-        }
-    };
-
     @BindingAdapter("imageUrl")
     public static void setImageUrl(ImageView imageView, String url) {
         String imageUrl = Constants.API_BASE_URL + url;
         Context context = imageView.getContext();
         Glide.with(context)
                 .load(imageUrl)
-                .listener(requestListener)
                 .into(imageView);
     }
 
