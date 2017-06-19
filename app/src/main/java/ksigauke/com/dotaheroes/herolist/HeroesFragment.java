@@ -23,7 +23,7 @@ import ksigauke.com.dotaheroes.domain.Hero;
 public class HeroesFragment extends Fragment implements HeroesContract.View {
 
     @Inject
-    HeroesPresenter heroesPresenter;
+    HeroesContract.Presenter heroesPresenter;
 
     private HeroesAdapter heroesAdapter;
     private ProgressBar heroesProgressBar;
