@@ -15,7 +15,7 @@ public class InMemoryHeroRepository implements HeroRepository {
         HEROES.add(new Hero.Builder().id(1)
                 .name("Razor")
                 .localizedName("Razor")
-                .primaryAttribute("Intelligence")
+                .primaryAttribute("int")
                 .attackType("Range")
                 .roles(
                         new ArrayList<String>() {{
@@ -36,7 +36,7 @@ public class InMemoryHeroRepository implements HeroRepository {
                 .id(2)
                 .name("Anti-mage")
                 .localizedName("Anti-mage")
-                .primaryAttribute("Intelligence")
+                .primaryAttribute("int")
                 .attackType("Melee")
                 .roles(
                         new ArrayList<String>() {{
@@ -57,7 +57,7 @@ public class InMemoryHeroRepository implements HeroRepository {
                 .id(3)
                 .name("Alchemist")
                 .localizedName("Alchemist")
-                .primaryAttribute("Agility")
+                .primaryAttribute("agi")
                 .attackType("Melee")
                 .roles(
                         new ArrayList<String>() {{
@@ -78,7 +78,7 @@ public class InMemoryHeroRepository implements HeroRepository {
                 .id(4)
                 .name("Pudge")
                 .localizedName("Pudge")
-                .primaryAttribute("Strength")
+                .primaryAttribute("str")
                 .attackType("Melee")
                 .roles(
                         new ArrayList<String>() {{
@@ -104,6 +104,11 @@ public class InMemoryHeroRepository implements HeroRepository {
         return Observable.create(new ObservableOnSubscribe<List<Hero>>() {
             @Override
             public void subscribe(ObservableEmitter<List<Hero>> e) throws Exception {
+                try{
+                    Thread.sleep(2000);
+                }catch (InterruptedException ex){
+                    ex.printStackTrace();
+                }
                 e.onNext(HEROES);
             }
         });

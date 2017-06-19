@@ -1,21 +1,43 @@
 package ksigauke.com.dotaheroes.domain;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Hero {
 
     private int id;
     private String name;
+
+    @SerializedName("localized_name")
     private String localizedName;
+
+    @SerializedName("primary_attr")
     private String primaryAttribute;
+
+    @SerializedName("attack_type")
     private String attackType;
+
     private List<String> roles;
 
+    @SerializedName("img")
     private String imageUrl;
+
+    @SerializedName("base_attack_min")
     private int attackMin;
+
+    @SerializedName("base_attack_max")
     private int attackMax;
+
+    @SerializedName("base_str")
     private int strength;
+
+
+    @SerializedName("base_agi")
     private int agility;
+
+    @SerializedName("base_int")
     private int intelligence;
 
     private Hero() {

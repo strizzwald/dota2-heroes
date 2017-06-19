@@ -9,18 +9,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ksigauke.com.dotaheroes.R;
 import ksigauke.com.dotaheroes.domain.Hero;
-import ksigauke.com.dotaheroes.repository.InMemoryHeroRepository;
+import ksigauke.com.dotaheroes.repository.HeroRepositoryImpl;
 
 public class HeroesFragment extends Fragment implements HeroesContract.View {
 
-    private HeroesPresenter heroesPresenter = new HeroesPresenter(new InMemoryHeroRepository(), this);
+    private HeroesPresenter heroesPresenter = new HeroesPresenter(new HeroRepositoryImpl(), this);
     private HeroesAdapter heroesAdapter;
+    private ProgressBar heroesProgressBar;
 
     public HeroesFragment() {
     }
@@ -34,20 +36,21 @@ public class HeroesFragment extends Fragment implements HeroesContract.View {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        heroesPresenter.getAllHeroes();
+
         View root = inflater.inflate(R.layout.fragment_heroes, container, false);
 
         RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.rv_heroes_list);
-
+        heroesProgressBar = (ProgressBar) root.findViewById(R.id.heroesProgressBar);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setAdapter(heroesAdapter);
         recyclerView.setLayoutManager(layoutManager);
-
+        heroesPresenter.getAllHeroes();
         return root;
     }
 
     @Override
     public void showLoadingBar() {
+        heroesProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -57,7 +60,7 @@ public class HeroesFragment extends Fragment implements HeroesContract.View {
 
     @Override
     public void hideLoadingBar() {
-
+        heroesProgressBar.setVisibility(View.GONE);
     }
 
     @Override

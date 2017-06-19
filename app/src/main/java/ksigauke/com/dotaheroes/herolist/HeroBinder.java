@@ -2,13 +2,9 @@ package ksigauke.com.dotaheroes.herolist;
 
 import android.content.Context;
 import android.databinding.BindingAdapter;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 
 import ksigauke.com.dotaheroes.Constants;
 import ksigauke.com.dotaheroes.R;
@@ -17,6 +13,7 @@ public final class HeroBinder {
 
     private HeroBinder() {
     }
+
     @BindingAdapter("imageUrl")
     public static void setImageUrl(ImageView imageView, String url) {
         String imageUrl = Constants.API_BASE_URL + url;
@@ -31,13 +28,13 @@ public final class HeroBinder {
         int drawable;
 
         switch (primaryAttribute.toLowerCase()) {
-            case "strength":
+            case "str":
                 drawable = R.drawable.ic_strength_dot;
                 break;
-            case "agility":
+            case "agi":
                 drawable = R.drawable.ic_agility_dot;
                 break;
-            case "intelligence":
+            case "int":
                 drawable = R.drawable.ic_intelligence_dot;
                 break;
             default:

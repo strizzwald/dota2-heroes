@@ -5,6 +5,7 @@ import java.util.List;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import ksigauke.com.dotaheroes.domain.Hero;
 import ksigauke.com.dotaheroes.repository.HeroRepository;
@@ -15,14 +16,22 @@ public class HeroesPresenter implements HeroesContract.Presenter {
     private HeroRepository heroRepository;
     private HeroesContract.View heroesView;
 
-    public HeroesPresenter(HeroRepository heroRepository, HeroesContract.View heroesView){
+    public HeroesPresenter(HeroRepository heroRepository, HeroesContract.View heroesView) {
         this.heroRepository = heroRepository;
         this.heroesView = heroesView;
     }
 
     @Override
     public void getAllHeroes() {
-        heroRepository.getAllHeroes().subscribeOn(Schedulers.io())
+        heroRepository.getAllHeroes()
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext(new Consumer<List<Hero>>() {
+                    @Override
+                    public void accept(List<Hero> heroes) throws Exception {
+                        heroesView.showLoadingBar();
+                    }
+                })
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<List<Hero>>() {
                     @Override
@@ -33,6 +42,7 @@ public class HeroesPresenter implements HeroesContract.Presenter {
                     @Override
                     public void onNext(List<Hero> heroes) {
                         heroesView.displayHeroes(heroes);
+                        heroesView.hideLoadingBar();
                     }
 
                     @Override

@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name" translatable="true">DOTA 2 Heroes</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cd_hero_image" translatable="true">Hero image</string>
+    <string name="cd_hero_primary_attribute_badge">Primary attribute bade</string>
 </resources>
