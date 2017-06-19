@@ -8,13 +8,18 @@ public interface HeroesContract {
 
     interface View {
         void showLoadingBar();
+
         void displayHeroes(List<Hero> heroes);
+
         void hideLoadingBar();
+
         void showError(String errorMessage);
     }
 
-    interface Presenter{
+    interface Presenter {
         void getAllHeroes();
+
+        void setView(View v);
     }
 
 }

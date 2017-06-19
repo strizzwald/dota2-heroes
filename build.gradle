@@ -25,6 +25,7 @@ ext {
     junitVersion = "4.11"
     glideVersion = "3.5.2"
     retrofitVersion = "2.3.0"
+    daggerVersion  = "2.8"
 }
 
 task clean(type: Delete) {

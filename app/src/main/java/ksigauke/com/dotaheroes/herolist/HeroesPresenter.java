@@ -1,24 +1,31 @@
 package ksigauke.com.dotaheroes.herolist;
 
+import android.content.Context;
+
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import ksigauke.com.dotaheroes.DotaHeroesApplication;
 import ksigauke.com.dotaheroes.domain.Hero;
 import ksigauke.com.dotaheroes.repository.HeroRepository;
 
 
 public class HeroesPresenter implements HeroesContract.Presenter {
 
-    private HeroRepository heroRepository;
+    @Inject
+    HeroRepository heroRepository;
+
     private HeroesContract.View heroesView;
 
-    public HeroesPresenter(HeroRepository heroRepository, HeroesContract.View heroesView) {
-        this.heroRepository = heroRepository;
-        this.heroesView = heroesView;
+
+    public HeroesPresenter(Context context) {
+        ((DotaHeroesApplication) context).getAppComponent().inject(this);
     }
 
     @Override
@@ -55,5 +62,10 @@ public class HeroesPresenter implements HeroesContract.Presenter {
 
                     }
                 });
+    }
+
+    @Override
+    public void setView(HeroesContract.View v) {
+        heroesView = v;
     }
 }
