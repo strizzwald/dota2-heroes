@@ -1,5 +1,5 @@
 # DOTA 2 Heroes
-===================================
+---
 
 Small app that displays a list of DOTA 2 characters.
 
