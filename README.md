@@ -1,6 +1,5 @@
-# DOTA 2 Heroes
+# DOTA 2 Heroes  [![Build Status](https://travis-ci.org/carnag3kid7/dota2-heroes.svg?branch=master)](https://travis-ci.org/carnag3kid7/dota2-heroes)
 ---
-
 Small app that displays a list of DOTA 2 characters.
 
 ### Libraries Used
