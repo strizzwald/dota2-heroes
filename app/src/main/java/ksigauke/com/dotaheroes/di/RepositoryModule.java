@@ -30,8 +30,8 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    HeroRepository provideHeroRepository(Context context) {
-        return new HeroRepositoryImpl(context);
+    HeroRepository provideHeroRepository(OpenDotaApi openDotaApi) {
+        return new HeroRepositoryImpl(openDotaApi);
     }
 
     @Provides

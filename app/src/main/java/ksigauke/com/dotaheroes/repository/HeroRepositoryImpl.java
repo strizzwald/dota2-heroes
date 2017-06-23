@@ -16,8 +16,8 @@ public class HeroRepositoryImpl implements HeroRepository {
     @Inject
     OpenDotaApi openDotaApi;
 
-    public HeroRepositoryImpl(Context context) {
-        ((DotaHeroesApplication) context).getAppComponent().inject(this);
+    public HeroRepositoryImpl(OpenDotaApi openDotaApi) {
+        this.openDotaApi = openDotaApi;
     }
 
     @Override

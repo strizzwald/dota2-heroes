@@ -9,14 +9,15 @@ import dagger.Module;
 import dagger.Provides;
 import ksigauke.com.dotaheroes.herolist.HeroesContract;
 import ksigauke.com.dotaheroes.herolist.HeroesPresenter;
+import ksigauke.com.dotaheroes.repository.HeroRepository;
 
 @Module
 class PresenterModule {
 
     @Provides
     @Singleton
-    HeroesContract.Presenter provideHeroesPresenter(Context context) {
-        return new HeroesPresenter(context);
+    HeroesContract.Presenter provideHeroesPresenter(HeroRepository heroRepository) {
+        return new HeroesPresenter(heroRepository);
     }
 
 }

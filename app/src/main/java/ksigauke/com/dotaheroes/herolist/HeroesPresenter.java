@@ -24,8 +24,8 @@ public class HeroesPresenter implements HeroesContract.Presenter {
     private HeroesContract.View heroesView;
 
 
-    public HeroesPresenter(Context context) {
-        ((DotaHeroesApplication) context).getAppComponent().inject(this);
+    public HeroesPresenter(HeroRepository heroRepository){
+        this.heroRepository = heroRepository;
     }
 
     @Override
