@@ -26,6 +26,7 @@ ext {
     glideVersion = "3.5.2"
     retrofitVersion = "2.3.0"
     daggerVersion  = "2.8"
+    mockitoVersion = "2.7.22"
 }
 
 task clean(type: Delete) {

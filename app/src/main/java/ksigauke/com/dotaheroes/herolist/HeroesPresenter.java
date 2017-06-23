@@ -7,6 +7,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Observer;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -23,23 +24,26 @@ public class HeroesPresenter implements HeroesContract.Presenter {
 
     private HeroesContract.View heroesView;
 
+    private Scheduler ioScheduler, mainScheduler;
 
-    public HeroesPresenter(HeroRepository heroRepository){
+    public HeroesPresenter(HeroRepository heroRepository, Scheduler ioScheduler, Scheduler mainScheduler){
+        this.ioScheduler = ioScheduler;
+        this.mainScheduler = mainScheduler;
         this.heroRepository = heroRepository;
     }
 
     @Override
     public void getAllHeroes() {
         heroRepository.getAllHeroes()
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(mainScheduler)
                 .doOnNext(new Consumer<List<Hero>>() {
                     @Override
                     public void accept(List<Hero> heroes) throws Exception {
                         heroesView.showLoadingBar();
                     }
                 })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(ioScheduler)
+                .observeOn(mainScheduler)
                 .subscribe(new Observer<List<Hero>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -68,4 +72,5 @@ public class HeroesPresenter implements HeroesContract.Presenter {
     public void setView(HeroesContract.View v) {
         heroesView = v;
     }
+
 }

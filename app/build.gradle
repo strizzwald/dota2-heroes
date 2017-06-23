@@ -54,5 +54,7 @@ dependencies {
     provided 'javax.annotation:jsr250-api:1.0'
     compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+
+    testCompile "org.mockito:mockito-core:$rootProject.ext.mockitoVersion"
     testCompile "junit:junit:$rootProject.ext.junitVersion"
 }

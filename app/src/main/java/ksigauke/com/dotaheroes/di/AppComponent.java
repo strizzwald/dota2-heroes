@@ -8,7 +8,7 @@ import ksigauke.com.dotaheroes.herolist.HeroesPresenter;
 import ksigauke.com.dotaheroes.repository.HeroRepositoryImpl;
 
 @Singleton
-@Component(modules = {AppModule.class, PresenterModule.class, RepositoryModule.class})
+@Component(modules = {AppModule.class, PresenterModule.class, RepositoryModule.class, SchedulerModule.class})
 public interface AppComponent {
 
     void inject(HeroesPresenter target);
